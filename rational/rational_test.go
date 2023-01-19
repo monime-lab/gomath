@@ -1,4 +1,4 @@
-package dectofrac
+package rational
 
 import (
 	"fmt"
@@ -27,7 +27,7 @@ func TestNewRatI(t *testing.T) {
 	}
 	for _, test := range tests {
 		t.Run(test.expected, func(t *testing.T) {
-			assert.Equal(t, test.expected, NewRatI(test.float, test.iterations).String())
+			assert.Equal(t, test.expected, NewWithIterations(test.float, test.iterations).String())
 		})
 	}
 }
@@ -53,15 +53,15 @@ func TestNewRatP(t *testing.T) {
 	}
 	for _, test := range tests {
 		t.Run(test.expected, func(t *testing.T) {
-			assert.Equal(t, test.expected, NewRatP(test.float, test.precision).String())
+			assert.Equal(t, test.expected, NewWithPrecision(test.float, test.precision).String())
 		})
 	}
 }
 
 func ExampleNewRatP() {
-	fmt.Println(NewRatP(0.6666, 0.01).String())
-	fmt.Println(NewRatP(0.981, 0.001).String())
-	fmt.Println(NewRatP(0.75, 0.01).String())
+	fmt.Println(NewWithPrecision(0.6666, 0.01).String())
+	fmt.Println(NewWithPrecision(0.981, 0.001).String())
+	fmt.Println(NewWithPrecision(0.75, 0.01).String())
 	// Output:
 	// 2/3
 	// 981/1000
@@ -69,8 +69,8 @@ func ExampleNewRatP() {
 }
 
 func ExampleNewRatI() {
-	fmt.Println(NewRatI(0.6667, 3).String())
-	fmt.Println(NewRatI(0.6667, 4).String())
+	fmt.Println(NewWithIterations(0.6667, 3).String())
+	fmt.Println(NewWithIterations(0.6667, 4).String())
 	// Output:
 	// 2/3
 	// 6667/10000

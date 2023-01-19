@@ -1,10 +1,8 @@
-# go-decimal-to-rational
+# gomath
 
-[![Build Status](https://travis-ci.org/av-elier/go-decimal-to-rational.svg?branch=master)](https://travis-ci.org/av-elier/go-decimal-to-rational)
+Essential Maths go library
 
-Go library to convert decimal (float64) to rational fraction with required precision
-
-Relies on [Continued Fraction](http://mathworld.wolfram.com/ContinuedFraction.html) algorythm.
+Floats to rationals relies on [Continued Fraction](http://mathworld.wolfram.com/ContinuedFraction.html).
 
 It's sometimes more appropriate than default big.Rat SetString, because
 you can get `2/3` from `0.6666` by specifiing required precision. In big.Rat SetString

@@ -1,4 +1,4 @@
-package dectofrac
+package rational
 
 import (
 	"math"
@@ -8,19 +8,19 @@ import (
 // MaxIterations is some sane limit of iterations for precision mode
 const MaxIterations = 5000
 
-// NewRatI returns rational from decimal
-// using `iterations` number of iterations in Continued Fraction algorythm
-func NewRatI(val float64, iterations int64) *big.Rat {
-	return NewRat(val, iterations, 0)
+// NewWithIterations returns rational from decimal
+// using `iterations` number of iterations in Continued Fraction algorithm
+func NewWithIterations(val float64, iterations int64) *big.Rat {
+	return New(val, iterations, 0)
 }
 
-// NewRatP returns rational from decimal
+// NewWithPrecision returns rational from decimal
 // by going as mush iterations, until next fraction is less than `stepPrecision`
-func NewRatP(val float64, stepPrecision float64) *big.Rat {
-	return NewRat(val, MaxIterations, stepPrecision)
+func NewWithPrecision(val float64, stepPrecision float64) *big.Rat {
+	return New(val, MaxIterations, stepPrecision)
 }
 
-func NewRat(val float64, iterations int64, stepPrecision float64) *big.Rat {
+func New(val float64, iterations int64, stepPrecision float64) *big.Rat {
 	a0 := int64(math.Floor(val))
 	x0 := val - float64(a0)
 	rat := cf(x0, 1, iterations, stepPrecision)
