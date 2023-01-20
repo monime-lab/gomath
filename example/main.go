@@ -8,7 +8,7 @@ import (
 
 func main() {
 	t := time.Now()
-	a := rational.NewFromComponents(1, 5)
-	b := rational.NewFromComponents(20, 100)
-	fmt.Printf("Rat: %v. Took: %s\n", a.Equals(b), time.Since(t))
+	a := rational.NewFromComponents(1, 1)
+	b := rational.NewFromComponents(1, 4)
+	fmt.Printf("Rat: %v. Took: %s\n", a.Sub(b), time.Since(t))
 }

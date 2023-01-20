@@ -28,6 +28,27 @@ func (r Rational) DenominatorInt64() int64 {
 	return r.Denominator().Int64()
 }
 
+func (r Rational) Add(r2 Rational) Rational {
+	a := big.Rat(r)
+	b := big.Rat(r2)
+	res := a.Add(&a, &b)
+	return Rational(*res)
+}
+
+func (r Rational) Sub(r2 Rational) Rational {
+	a := big.Rat(r)
+	b := big.Rat(r2)
+	res := a.Sub(&a, &b)
+	return Rational(*res)
+}
+
+func (r Rational) Mul(r2 Rational) Rational {
+	a := big.Rat(r)
+	b := big.Rat(r2)
+	res := a.Mul(&a, &b)
+	return Rational(*res)
+}
+
 func (r Rational) Equals(r2 Rational) bool {
 	return r.Compare(r2) == 0
 }
