@@ -66,6 +66,12 @@ func NewFromComponents(num, den int64) Rational {
 	return Rational(*rat)
 }
 
+func NewFromBigIntComponents(num, den *big.Int) Rational {
+	rat := new(big.Rat)
+	rat = rat.SetFrac(num, den)
+	return Rational(*rat)
+}
+
 func New(val float64, iterations int64, stepPrecision float64) Rational {
 	a0 := int64(math.Floor(val))
 	x0 := val - float64(a0)
