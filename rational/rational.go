@@ -28,6 +28,15 @@ func (r Rational) DenominatorInt64() int64 {
 	return r.Denominator().Int64()
 }
 
+func (r Rational) Equals(r2 Rational) bool {
+	return r.Compare(r2) == 0
+}
+
+func (r Rational) Compare(r2 Rational) int {
+	a, b := big.Rat(r), big.Rat(r2)
+	return a.Cmp(&b)
+}
+
 func (r Rational) String() string {
 	rat := big.Rat(r)
 	return rat.RatString()
@@ -48,10 +57,10 @@ func NewWithPrecision(val float64, stepPrecision float64) Rational {
 func NewWithDecimalPlaces(val float64, dp int) Rational {
 	denominator := math.Pow10(dp)
 	numerator := int64(val * denominator)
-	return FromParts(numerator, int64(denominator))
+	return NewFromComponents(numerator, int64(denominator))
 }
 
-func FromParts(num, den int64) Rational {
+func NewFromComponents(num, den int64) Rational {
 	rat := new(big.Rat)
 	rat = rat.SetFrac64(num, den)
 	return Rational(*rat)
