@@ -49,6 +49,13 @@ func (r Rational) Mul(r2 Rational) Rational {
 	return Rational(*res)
 }
 
+func (r Rational) Quo(r2 Rational) Rational {
+	a := big.Rat(r)
+	b := big.Rat(r2)
+	res := a.Quo(&a, &b)
+	return Rational(*res)
+}
+
 func (r Rational) Equals(r2 Rational) bool {
 	return r.Compare(r2) == 0
 }
