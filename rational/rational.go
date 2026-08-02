@@ -43,31 +43,36 @@ func (r Rational) DenominatorInt64() int64 {
 	return r.Denominator().Int64()
 }
 
+func (r Rational) toBigRat() *big.Rat {
+	rat := big.Rat(r)
+	return new(big.Rat).Set(&rat)
+}
+
 func (r Rational) Add(r2 Rational) Rational {
-	a := big.Rat(r)
-	b := big.Rat(r2)
-	res := a.Add(&a, &b)
+	a := r.toBigRat()
+	b := r2.toBigRat()
+	res := new(big.Rat).Add(a, b)
 	return Rational(*res)
 }
 
 func (r Rational) Sub(r2 Rational) Rational {
-	a := big.Rat(r)
-	b := big.Rat(r2)
-	res := a.Sub(&a, &b)
+	a := r.toBigRat()
+	b := r2.toBigRat()
+	res := new(big.Rat).Sub(a, b)
 	return Rational(*res)
 }
 
 func (r Rational) Mul(r2 Rational) Rational {
-	a := big.Rat(r)
-	b := big.Rat(r2)
-	res := a.Mul(&a, &b)
+	a := r.toBigRat()
+	b := r2.toBigRat()
+	res := new(big.Rat).Mul(a, b)
 	return Rational(*res)
 }
 
 func (r Rational) Quo(r2 Rational) Rational {
-	a := big.Rat(r)
-	b := big.Rat(r2)
-	res := a.Quo(&a, &b)
+	a := r.toBigRat()
+	b := r2.toBigRat()
+	res := new(big.Rat).Quo(a, b)
 	return Rational(*res)
 }
 
