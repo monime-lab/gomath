@@ -10,6 +10,21 @@ const MaxIterations = 5000
 
 type Rational big.Rat
 
+func (r Rational) IsZero() bool {
+	v := big.Rat(r)
+	return v.Sign() == 0
+}
+
+func (r Rational) IsNegative() bool {
+	v := big.Rat(r)
+	return v.Sign() == -1
+}
+
+func (r Rational) IsPositive() bool {
+	v := big.Rat(r)
+	return v.Sign() == 1
+}
+
 func (r Rational) Numerator() *big.Int {
 	rat := big.Rat(r)
 	return rat.Num()
